@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nilesh Kumar — Home Fitness Trainer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f2ee;
+    --accent: #c8f542;
+    --accent-dark: #a8d420;
+    --gray: #1c1c1c;
+    --gray2: #2e2e2e;
+    --muted: #888;
+    --ff-display: 'Bebas Neue', sans-serif;
+    --ff-body: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--ff-body);
+    background: var(--black);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 5vw;
+    backdrop-filter: blur(12px);
+    background: rgba(10,10,10,0.85);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .nav-logo {
+    font-family: var(--ff-display);
+    font-size: 1.6rem;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.85rem; letter-spacing: 0.08em;
+    text-transform: uppercase; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta {
+    background: var(--accent); color: var(--black);
+    border: none; padding: 0.55rem 1.4rem;
+    font-family: var(--ff-body); font-size: 0.85rem;
+    font-weight: 500; cursor: pointer; letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .nav-cta:hover { background: var(--accent-dark); transform: scale(0.98); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 0 5vw;
+    padding-top: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(200,245,66,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-bg-text {
+    position: absolute;
+    right: -2vw; bottom: -0.1em;
+    font-family: var(--ff-display);
+    font-size: clamp(120px, 18vw, 280px);
+    color: rgba(255,255,255,0.03);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+  .hero-left { position: relative; z-index: 2; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(200,245,66,0.12);
+    border: 1px solid rgba(200,245,66,0.25);
+    padding: 0.35rem 1rem;
+    font-size: 0.75rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 2rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-badge::before {
+    content: ''; width: 6px; height: 6px;
+    background: var(--accent); border-radius: 50%;
+    animation: pulse 1.5s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; } 50% { opacity: 0.3; }
+  }
+  .hero-title {
+    font-family: var(--ff-display);
+    font-size: clamp(3.5rem, 7vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  .hero-title span { color: var(--accent); }
+  .hero-sub {
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: rgba(245,242,238,0.65);
+    max-width: 440px;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+  .hero-btns {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .btn-primary {
+    background: var(--accent); color: var(--black);
+    padding: 0.85rem 2rem; border: none;
+    font-family: var(--ff-body); font-size: 0.95rem;
+    font-weight: 500; cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    text-decoration: none;
+  }
+  .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--white); padding: 0.85rem 2rem;
+    font-family: var(--ff-body); font-size: 0.95rem;
+    cursor: pointer; transition: border-color 0.2s, transform 0.15s;
+    text-decoration: none;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+  .hero-stats {
+    position: absolute; bottom: 3rem; left: 5vw;
+    display: flex; gap: 3rem;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+  .stat-item { }
+  .stat-num {
+    font-family: var(--ff-display);
+    font-size: 2.8rem; color: var(--accent);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.75rem; color: var(--muted);
+    letter-spacing: 0.08em; text-transform: uppercase;
+    margin-top: 0.2rem;
+  }
+
+  .hero-right {
+    position: relative; z-index: 2;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-visual {
+    width: 100%; max-width: 480px;
+    aspect-ratio: 3/4;
+    background: var(--gray);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-visual::after {
+    content: 'NK';
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--ff-display);
+    font-size: 12rem; color: rgba(200,245,66,0.08);
+    pointer-events: none;
+  }
+  .hero-visual-inner {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: flex-end;
+    padding: 2rem;
+    background: linear-gradient(to top, rgba(10,10,10,0.9) 0%, transparent 60%);
+  }
+  .upload-hint {
+    color: rgba(255,255,255,0.25);
+    font-size: 0.8rem; letter-spacing: 0.06em;
+    text-align: center;
+  }
+  .hero-tag {
+    position: absolute; top: 2rem; right: -1rem;
+    background: var(--accent); color: var(--black);
+    padding: 0.6rem 1.2rem;
+    font-family: var(--ff-display); font-size: 1.1rem;
+    letter-spacing: 0.06em;
+    transform: rotate(3deg);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SECTION COMMON */
+  section { padding: 6rem 5vw; }
+  .section-label {
+    font-size: 0.75rem; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: var(--ff-display);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    margin-bottom: 1.5rem;
+  }
+  .section-sub {
+    font-size: 1rem; font-weight: 300;
+    color: rgba(245,242,238,0.6);
+    line-height: 1.75; max-width: 560px;
+  }
+
+  /* ABOUT */
+  .about { background: var(--gray); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 5rem;
+    align-items: center;
+    margin-top: 4rem;
+  }
+  .about-img {
+    aspect-ratio: 1;
+    background: var(--gray2);
+    position: relative;
+    overflow: hidden;
+  }
+  .about-img::after {
+    content: 'NILESH';
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--ff-display); font-size: 5rem;
+    color: rgba(200,245,66,0.06);
+  }
+  .about-img-border {
+    position: absolute;
+    top: 1rem; left: 1rem; right: -1rem; bottom: -1rem;
+    border: 2px solid var(--accent);
+    z-index: -1;
+  }
+  .about-text h3 {
+    font-family: var(--ff-display);
+    font-size: 1.8rem; letter-spacing: 0.04em;
+    color: var(--accent); margin-bottom: 1.5rem;
+  }
+  .about-text p {
+    font-size: 0.98rem; font-weight: 300;
+    color: rgba(245,242,238,0.7);
+    line-height: 1.8; margin-bottom: 1.2rem;
+  }
+  .about-tags {
+    display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem;
+  }
+  .tag {
+    border: 1px solid rgba(200,245,66,0.3);
+    color: var(--accent);
+    padding: 0.3rem 0.8rem;
+    font-size: 0.78rem; letter-spacing: 0.06em;
+  }
+
+  /* SERVICES */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5px;
+    margin-top: 4rem;
+    background: rgba(255,255,255,0.06);
+  }
+  .service-card {
+    background: var(--black);
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+    cursor: default;
+  }
+  .service-card:hover { background: var(--gray); }
+  .service-card:hover .service-num { color: var(--accent); }
+  .service-num {
+    font-family: var(--ff-display);
+    font-size: 4rem; color: rgba(255,255,255,0.06);
+    line-height: 1; margin-bottom: 1rem;
+    transition: color 0.3s;
+  }
+  .service-icon {
+    font-size: 2rem; margin-bottom: 1rem;
+  }
+  .service-title {
+    font-family: var(--ff-display);
+    font-size: 1.5rem; letter-spacing: 0.04em;
+    margin-bottom: 0.8rem;
+  }
+  .service-desc {
+    font-size: 0.88rem; font-weight: 300;
+    color: rgba(245,242,238,0.55);
+    line-height: 1.7;
+  }
+  .service-arrow {
+    position: absolute; bottom: 2rem; right: 2rem;
+    width: 36px; height: 36px;
+    border: 1px solid rgba(255,255,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; color: var(--muted);
+    transition: all 0.2s;
+  }
+  .service-card:hover .service-arrow {
+    background: var(--accent); color: var(--black);
+    border-color: var(--accent);
+  }
+
+  /* WHY ME */
+  .why { background: var(--gray); }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    margin-top: 4rem;
+  }
+  .why-item {
+    padding: 2rem;
+    border: 1px solid rgba(255,255,255,0.07);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .why-item:hover { border-color: rgba(200,245,66,0.3); }
+  .why-item::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 3px; height: 0;
+    background: var(--accent);
+    transition: height 0.3s;
+  }
+  .why-item:hover::before { height: 100%; }
+  .why-icon { font-size: 2rem; margin-bottom: 1.2rem; }
+  .why-title {
+    font-family: var(--ff-display);
+    font-size: 1.2rem; letter-spacing: 0.04em;
+    margin-bottom: 0.6rem;
+  }
+  .why-desc {
+    font-size: 0.85rem; font-weight: 300;
+    color: rgba(245,242,238,0.55); line-height: 1.7;
+  }
+
+  /* PROGRAMS */
+  .programs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 4rem;
+  }
+  .program-card {
+    background: var(--gray);
+    padding: 2.5rem 2rem 2rem;
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.07);
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .program-card:hover { transform: translateY(-6px); border-color: rgba(200,245,66,0.25); }
+  .program-card.featured {
+    border-color: var(--accent);
+    background: rgba(200,245,66,0.05);
+  }
+  .program-badge {
+    position: absolute; top: -1px; right: 2rem;
+    background: var(--accent); color: var(--black);
+    padding: 0.3rem 0.8rem;
+    font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .program-tier {
+    font-size: 0.72rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  .program-name {
+    font-family: var(--ff-display);
+    font-size: 1.8rem; letter-spacing: 0.04em;
+    margin-bottom: 0.8rem;
+  }
+  .program-desc {
+    font-size: 0.85rem; font-weight: 300;
+    color: rgba(245,242,238,0.55); line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+  .program-features { list-style: none; margin-bottom: 2rem; }
+  .program-features li {
+    font-size: 0.85rem; font-weight: 300;
+    color: rgba(245,242,238,0.7);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex; gap: 0.6rem; align-items: center;
+  }
+  .program-features li::before {
+    content: '✓'; color: var(--accent);
+    font-size: 0.8rem; font-weight: 500;
+  }
+  .program-price {
+    font-family: var(--ff-display);
+    font-size: 2.2rem; color: var(--white);
+    margin-bottom: 0.3rem;
+  }
+  .program-period {
+    font-size: 0.78rem; color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+
+  /* TESTIMONIALS */
+  .testimonials { background: var(--gray); }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 4rem;
+  }
+  .testimonial-card {
+    background: var(--black);
+    padding: 2rem;
+    border: 1px solid rgba(255,255,255,0.07);
+  }
+  .testimonial-stars {
+    color: var(--accent); font-size: 0.9rem;
+    letter-spacing: 0.1em; margin-bottom: 1rem;
+  }
+  .testimonial-text {
+    font-size: 0.95rem; font-weight: 300;
+    font-style: italic; line-height: 1.75;
+    color: rgba(245,242,238,0.75);
+    margin-bottom: 1.5rem;
+  }
+  .testimonial-author {
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .author-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(200,245,66,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--ff-display); font-size: 1rem;
+    color: var(--accent);
+  }
+  .author-name {
+    font-size: 0.9rem; font-weight: 500;
+  }
+  .author-role {
+    font-size: 0.78rem; color: var(--muted);
+  }
+
+  /* CTA */
+  .cta-section {
+    background: var(--accent);
+    padding: 5rem 5vw;
+    text-align: center;
+  }
+  .cta-section .section-label { color: rgba(0,0,0,0.5); }
+  .cta-section .section-title { color: var(--black); }
+  .cta-section p {
+    color: rgba(0,0,0,0.6); font-weight: 300;
+    font-size: 1.05rem; max-width: 500px;
+    margin: 0 auto 2.5rem;
+  }
+  .btn-dark {
+    background: var(--black); color: var(--accent);
+    padding: 0.95rem 2.5rem; border: none;
+    font-family: var(--ff-body); font-size: 0.95rem;
+    font-weight: 500; cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s;
+    display: inline-block;
+  }
+  .btn-dark:hover { transform: translateY(-3px); }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    align-items: start;
+    margin-top: 4rem;
+  }
+  .contact-info h3 {
+    font-family: var(--ff-display);
+    font-size: 1.5rem; letter-spacing: 0.04em;
+    margin-bottom: 1rem;
+  }
+  .contact-info p {
+    font-size: 0.9rem; font-weight: 300;
+    color: rgba(245,242,238,0.6); line-height: 1.75;
+    margin-bottom: 2rem;
+  }
+  .contact-items { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-item {
+    display: flex; align-items: center; gap: 1rem;
+    font-size: 0.9rem; color: rgba(245,242,238,0.7);
+  }
+  .contact-icon {
+    width: 40px; height: 40px;
+    border: 1px solid rgba(200,245,66,0.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; color: var(--accent);
+    flex-shrink: 0;
+  }
+  .form-group { margin-bottom: 1.2rem; }
+  .form-group label {
+    display: block;
+    font-size: 0.78rem; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    background: var(--gray);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: var(--white);
+    padding: 0.75rem 1rem;
+    font-family: var(--ff-body); font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: var(--accent);
+  }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+
+  /* FOOTER */
+  footer {
+    background: var(--gray);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 2.5rem 5vw;
+    display: flex; align-items: center;
+    justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo {
+    font-family: var(--ff-display);
+    font-size: 1.4rem; color: var(--accent);
+    letter-spacing: 0.04em;
+  }
+  footer p {
+    font-size: 0.8rem; color: var(--muted);
+  }
+  .footer-social { display: flex; gap: 1rem; }
+  .social-link {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(255,255,255,0.12);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--muted); font-size: 0.85rem;
+    text-decoration: none; transition: all 0.2s;
+  }
+  .social-link:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; text-align: center; padding-top: 100px; }
+    .hero-right { display: none; }
+    .hero-stats { position: static; margin-top: 3rem; justify-content: center; }
+    .hero-btns { justify-content: center; }
+    .hero-sub { margin: 0 auto 2.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .programs-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .nav-links { display: none; }
+  }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible {
+    opacity: 1; transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">NK FITNESS</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#testimonials">Results</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="#contact">Book a Session</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">Available for New Clients</div>
+    <h1 class="hero-title">
+      TRAIN<br>
+      SMART.<br>
+      <span>LIVE</span><br>
+      STRONG.
+    </h1>
+    <p class="hero-sub">
+      Professional home fitness training tailored to your body, your space, and your goals — with 10+ years of proven results.
+    </p>
+    <div class="hero-btns">
+      <a class="btn-primary" href="#contact">Start Your Journey</a>
+      <a class="btn-outline" href="#programs">View Programs</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-visual">
+      <div class="hero-visual-inner">
+        <p class="upload-hint">Add your photo here</p>
+      </div>
+      <div class="hero-tag">10+ YRS EXP</div>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">200+</div>
+      <div class="stat-label">Clients Trained</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">10+</div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Home-Based</div>
+    </div>
+  </div>
+  <div class="hero-bg-text">FIT</div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="reveal">
+    <div class="section-label">Who I Am</div>
+    <h2 class="section-title">MEET NILESH KUMAR</h2>
+  </div>
+  <div class="about-grid reveal">
+    <div style="position:relative;">
+      <div class="about-img"></div>
+      <div class="about-img-border"></div>
+    </div>
+    <div class="about-text">
+      <h3>Your Dedicated Home Fitness Coach</h3>
+      <p>
+        I'm Nilesh Kumar, a certified fitness trainer with over 10 years of hands-on experience helping individuals transform their bodies and lives — right from the comfort of their own homes.
+      </p>
+      <p>
+        I believe that a gym membership is not a prerequisite for a strong, healthy body. With the right guidance, discipline, and a personalised programme, you can achieve extraordinary results using minimal equipment.
+      </p>
+      <p>
+        My approach is science-backed, practical, and deeply personal. I work with you one-on-one to understand your unique body, lifestyle, and goals — then build a plan that actually fits your life.
+      </p>
+      <div class="about-tags">
+        <span class="tag">Certified Trainer</span>
+        <span class="tag">Nutrition Coaching</span>
+        <span class="tag">Weight Loss</span>
+        <span class="tag">Muscle Building</span>
+        <span class="tag">Mobility & Flexibility</span>
+        <span class="tag">Bodyweight Training</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="reveal">
+    <div class="section-label">What I Offer</div>
+    <h2 class="section-title">TRAINING SERVICES</h2>
+    <p class="section-sub">Each service is crafted to deliver maximum results with your available space and equipment at home.</p>
+  </div>
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-icon">🏠</div>
+      <div class="service-title">HOME WORKOUT DESIGN</div>
+      <div class="service-desc">Custom workout plans built specifically for your home setup — no gym required. Bodyweight, resistance bands, dumbbells, or whatever you have.</div>
+      <div class="service-arrow">→</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-icon">🎯</div>
+      <div class="service-title">PERSONALISED COACHING</div>
+      <div class="service-desc">1-on-1 sessions with real-time feedback, form correction, and progressive programming tailored entirely to your fitness level and goals.</div>
+      <div class="service-arrow">→</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-icon">🥗</div>
+      <div class="service-title">NUTRITION GUIDANCE</div>
+      <div class="service-desc">Practical, sustainable eating strategies aligned with your training. No extreme diets — just smart nutrition that fuels your progress.</div>
+      <div class="service-arrow">→</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <div class="service-icon">📊</div>
+      <div class="service-title">PROGRESS TRACKING</div>
+      <div class="service-desc">Regular assessments and tracking to measure your results, adjust the plan, and keep you consistently moving forward.</div>
+      <div class="service-arrow">→</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">05</div>
+      <div class="service-icon">💪</div>
+      <div class="service-title">STRENGTH & CONDITIONING</div>
+      <div class="service-desc">Build functional strength, endurance, and athleticism — regardless of whether you're a beginner or an advanced athlete.</div>
+      <div class="service-arrow">→</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">06</div>
+      <div class="service-icon">🧘</div>
+      <div class="service-title">RECOVERY & MOBILITY</div>
+      <div class="service-desc">Stretching, mobility work, and recovery protocols to keep your body injury-free, limber, and performing at its best long-term.</div>
+      <div class="service-arrow">→</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY ME -->
+<section class="why">
+  <div class="reveal">
+    <div class="section-label">Why Choose Me</div>
+    <h2 class="section-title">THE NILESH DIFFERENCE</h2>
+  </div>
+  <div class="why-grid reveal">
+    <div class="why-item">
+      <div class="why-icon">⚡</div>
+      <div class="why-title">NO GYM NEEDED</div>
+      <div class="why-desc">I bring the workout to you. Train in your hall, bedroom, terrace, or garden. Zero commute, zero excuses.</div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">🔬</div>
+      <div class="why-title">SCIENCE-BACKED</div>
+      <div class="why-desc">Every programme is grounded in exercise science and physiology — not trends or gimmicks. Results you can trust.</div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">🤝</div>
+      <div class="why-title">TRULY PERSONAL</div>
+      <div class="why-desc">No cookie-cutter plans. I take time to understand your body type, limitations, lifestyle, and ambitions before building your programme.</div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">📱</div>
+      <div class="why-title">ALWAYS ACCESSIBLE</div>
+      <div class="why-desc">I'm available on WhatsApp, calls, or in person. Got a question on a rest day? I've got you covered.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section id="programs">
+  <div class="reveal">
+    <div class="section-label">Training Packages</div>
+    <h2 class="section-title">CHOOSE YOUR PROGRAMME</h2>
+    <p class="section-sub">Flexible packages designed for different goals, schedules, and budgets.</p>
+  </div>
+  <div class="programs-grid reveal">
+    <div class="program-card">
+      <div class="program-tier">Starter</div>
+      <div class="program-name">FOUNDATION</div>
+      <div class="program-desc">Perfect for beginners building habits and learning proper form.</div>
+      <ul class="program-features">
+        <li>8 sessions per month</li>
+        <li>Custom workout plan</li>
+        <li>Basic nutrition advice</li>
+        <li>WhatsApp check-ins</li>
+        <li>Monthly progress review</li>
+      </ul>
+      <div class="program-price">Contact</div>
+      <div class="program-period">for pricing</div>
+      <a class="btn-outline" href="#contact" style="font-size:0.85rem; padding: 0.7rem 1.5rem; display:inline-block;">Enquire Now</a>
+    </div>
+    <div class="program-card featured">
+      <div class="program-badge">Most Popular</div>
+      <div class="program-tier">Transformation</div>
+      <div class="program-name">ACCELERATE</div>
+      <div class="program-desc">The complete package for real, visible results in 90 days.</div>
+      <ul class="program-features">
+        <li>12 sessions per month</li>
+        <li>Fully personalised plan</li>
+        <li>Detailed nutrition coaching</li>
+        <li>Daily WhatsApp support</li>
+        <li>Weekly progress tracking</li>
+        <li>Body composition analysis</li>
+      </ul>
+      <div class="program-price">Contact</div>
+      <div class="program-period">for pricing</div>
+      <a class="btn-primary" href="#contact" style="font-size:0.85rem; padding: 0.7rem 1.5rem; display:inline-block;">Enquire Now</a>
+    </div>
+    <div class="program-card">
+      <div class="program-tier">Elite</div>
+      <div class="program-name">ELITE PRO</div>
+      <div class="program-desc">Unlimited coaching for athletes and those who demand the absolute best.</div>
+      <ul class="program-features">
+        <li>Unlimited sessions</li>
+        <li>Advanced programming</li>
+        <li>Full nutrition plan + macros</li>
+        <li>Priority 24/7 access</li>
+        <li>Bi-weekly body assessments</li>
+        <li>Supplement guidance</li>
+      </ul>
+      <div class="program-price">Contact</div>
+      <div class="program-period">for pricing</div>
+      <a class="btn-outline" href="#contact" style="font-size:0.85rem; padding: 0.7rem 1.5rem; display:inline-block;">Enquire Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="reveal">
+    <div class="section-label">Client Results</div>
+    <h2 class="section-title">REAL TRANSFORMATIONS</h2>
+  </div>
+  <div class="testimonials-grid reveal">
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text">"Nilesh completely changed how I think about fitness. I lost 14 kg in 4 months training at home — something I never thought possible without a gym. His guidance is clear, motivating, and genuinely effective."</div>
+      <div class="testimonial-author">
+        <div class="author-avatar">RV</div>
+        <div>
+          <div class="author-name">Rahul Verma</div>
+          <div class="author-role">Software Engineer, Bengaluru</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text">"As a working mother, I had no time to go to a gym. Nilesh designed a programme I could do in 40 minutes at home. I'm stronger than I've ever been, and my energy levels are through the roof."</div>
+      <div class="testimonial-author">
+        <div class="author-avatar">PS</div>
+        <div>
+          <div class="author-name">Priya Sharma</div>
+          <div class="author-role">Homemaker & Entrepreneur</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text">"His knowledge of the human body is impressive. He identified my weak areas in the first session and built a plan around fixing them. Six months later, my posture, strength, and confidence are transformed."</div>
+      <div class="testimonial-author">
+        <div class="author-avatar">AK</div>
+        <div>
+          <div class="author-name">Arjun Kulkarni</div>
+          <div class="author-role">Business Owner</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-section">
+  <div class="section-label">Ready to Start?</div>
+  <h2 class="section-title" style="font-size:clamp(2.5rem,5vw,4.5rem);">YOUR STRONGEST SELF STARTS AT HOME</h2>
+  <p>Book a free consultation and let's talk about your goals. No commitment required.</p>
+  <a class="btn-dark" href="#contact">Book Free Consultation</a>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="reveal">
+    <div class="section-label">Get In Touch</div>
+    <h2 class="section-title">LET'S TALK</h2>
+  </div>
+  <div class="contact-grid reveal">
+    <div class="contact-info">
+      <h3>Start Your Fitness Journey Today</h3>
+      <p>Fill in the form or reach out directly. I'll respond within 24 hours to discuss your goals and find the right programme for you.</p>
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>+91 XXXXX XXXXX</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div>nilesh@nkfitness.in</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>Available across Bengaluru (Home Visits)</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">💬</div>
+          <div>WhatsApp & Online Coaching Available</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" placeholder="e.g. Rahul Sharma"/>
+      </div>
+      <div class="form-group">
+        <label>Phone / WhatsApp</label>
+        <input type="tel" placeholder="+91 XXXXX XXXXX"/>
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="you@example.com"/>
+      </div>
+      <div class="form-group">
+        <label>Your Primary Goal</label>
+        <select>
+          <option value="">Select your goal</option>
+          <option>Weight Loss</option>
+          <option>Muscle Building</option>
+          <option>Improve Fitness & Stamina</option>
+          <option>Strength Training</option>
+          <option>Post-Injury Rehabilitation</option>
+          <option>General Health & Wellness</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Tell Me About Yourself</label>
+        <textarea placeholder="Current fitness level, any injuries, availability, etc..."></textarea>
+      </div>
+      <button class="btn-primary" style="width:100%; padding: 1rem; font-size: 0.95rem;" onclick="alert('Thank you! Nilesh will be in touch within 24 hours.')">Send Message →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">NK FITNESS</div>
+  <p>© 2024 Nilesh Kumar · Home Fitness Trainer · Bengaluru</p>
+  <div class="footer-social">
+    <a class="social-link" href="#" title="Instagram">IG</a>
+    <a class="social-link" href="#" title="YouTube">YT</a>
+    <a class="social-link" href="#" title="WhatsApp">WA</a>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
